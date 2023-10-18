@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class cloudSpawner : MonoBehaviour
 {
-    public float spawnRate = 3.1f;
+    public float spawnRate = 15;
     public GameObject cloud1;
     public GameObject cloud2;
     public GameObject cloud3;
-    public float spawnYRange = 3.0f; // Phạm vi ngẫu nhiên cho vị trí Y
+    public float spawnYRange = 1.66f; // Phạm vi ngẫu nhiên cho vị trí Y
     float nextSpawn = 0f;
     private List<GameObject> spawnedClouds = new List<GameObject>();
 
@@ -17,7 +17,7 @@ public class cloudSpawner : MonoBehaviour
         if (Time.time > nextSpawn)
         {
             // Tạo một vị trí spawn với vị trí X không đổi và vị trí Y ngẫu nhiên trong phạm vi spawnYRange.
-            Vector3 spawnPosition = new Vector3(15.29f, transform.position.y + Random.Range(-spawnYRange, spawnYRange), 0);
+            Vector3 spawnPosition = new Vector3(15.29f, transform.position.y + Random.Range(4.2f, spawnYRange), 0);
             GameObject clouds;
 
             // Sử dụng Random.Range để spawn ngẫu nhiên giữa cloud1, cloud2, và cloud3.

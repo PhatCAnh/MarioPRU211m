@@ -8,6 +8,7 @@ public class SpawnerMatDat : MonoBehaviour
     public GameObject matDat1;
     public GameObject matDat2;
     public GameObject matDat3;
+    public GameObject matDat4;
     float nextSpawn = 0f;
     private List<GameObject> spawnedMatDats = new List<GameObject>();
 
@@ -15,7 +16,7 @@ public class SpawnerMatDat : MonoBehaviour
     {
         if (Time.time > nextSpawn)
         {
-            Vector3 spawnPosition = new Vector3(15.29f, transform.position.y); // Đặt vị trí X = 18
+            Vector3 spawnPosition = new Vector3(4.68f, transform.position.y); // Đặt vị trí X = 18
             GameObject matDat;
 
             // Sử dụng Random.Range để spawn ngẫu nhiên giữa MatDat và MatDat2.
@@ -27,9 +28,13 @@ public class SpawnerMatDat : MonoBehaviour
             {
                 matDat = Instantiate(matDat2, spawnPosition, Quaternion.identity);
             }
-            else
+            else if (Random.Range (0, 3) == 2)
             {
                 matDat = Instantiate(matDat3, spawnPosition, Quaternion.identity);
+            }
+            else
+            {
+                matDat = Instantiate(matDat4, spawnPosition, Quaternion.identity);
             }
             spawnedMatDats.Add(matDat);
             nextSpawn = Time.time + spawnRate;
@@ -38,7 +43,7 @@ public class SpawnerMatDat : MonoBehaviour
         for (int i = spawnedMatDats.Count - 1; i >= 0; i--)
         {
             GameObject matDat = spawnedMatDats[i];
-            if (matDat.transform.position.x <= -24.22)
+            if (matDat.transform.position.x <= -28.24)
             {
                 spawnedMatDats.Remove(matDat);
                 Destroy(matDat);

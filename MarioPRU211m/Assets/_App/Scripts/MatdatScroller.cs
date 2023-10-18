@@ -19,5 +19,5 @@ public class MatdatScroller : MonoBehaviour
         //    transform.position = new Vector3(18f, transform.position.y);
         //}
     }
-    public float Speed = 3;
+    public float Speed = 2;
 }
