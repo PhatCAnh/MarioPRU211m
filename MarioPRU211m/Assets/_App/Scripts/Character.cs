@@ -16,6 +16,8 @@ public class Character : MonoBehaviour
 	[SerializeField] private float _jumpForce;
 
 	private bool _isGround;
+	
+	private GameController GameControl => GameController.instance;
 
 	public void Jump()
 	{
@@ -24,6 +26,7 @@ public class Character : MonoBehaviour
 
 	private void Update()
 	{
+		if(GameControl.IsStop) return;
 		_isGround = Physics2D.OverlapCircle(_checkGround.transform.position, 0.1f, _maskGround);
 		if(Input.GetKeyDown(KeyCode.Space))
 		{
@@ -36,5 +39,14 @@ public class Character : MonoBehaviour
 	private void OnDrawGizmosSelected()
 	{
 		Gizmos.DrawWireSphere(_checkGround.transform.position, 0.1f);
+	}
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		if(other.CompareTag("Trap"))
+		{
+			GameControl.LoseGame();
+			_theRb.velocity = new Vector2(-10, 10);
+		}
 	}
 }
