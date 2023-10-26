@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Character : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class Character : MonoBehaviour
 
 	private bool _isGround;
 	
-	private GameController GameControl => GameController.instance;
+	private GameController gameControl => GameController.instance;
 
 	public void Jump()
 	{
@@ -26,7 +27,7 @@ public class Character : MonoBehaviour
 
 	private void Update()
 	{
-		if(GameControl.IsStop) return;
+		if(gameControl.isStop) return;
 		_isGround = Physics2D.OverlapCircle(_checkGround.transform.position, 0.1f, _maskGround);
 		if(Input.GetKeyDown(KeyCode.Space))
 		{
@@ -45,8 +46,9 @@ public class Character : MonoBehaviour
 	{
 		if(other.CompareTag("Trap"))
 		{
-			GameControl.LoseGame();
-			_theRb.velocity = new Vector2(-10, 10);
+			gameControl.LoseGame();
+			_theRb.velocity = new Vector2(-15, Random.Range(5, 15));
+			_anim.SetTrigger("isDie");
 		}
 	}
 }

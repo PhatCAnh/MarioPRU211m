@@ -10,7 +10,10 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject _mapElement;
     
     [SerializeField] private GameObject _mapParent;
-    public bool IsStop => isLoseGame;
+
+    public float timeRunGame;
+    
+    public bool isStop => isLoseGame;
 
     public bool isLoseGame;
 

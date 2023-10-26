@@ -7,7 +7,7 @@ namespace _App.Scripts
 		
 		void Update()
 		{
-			if(GameController.IsStop) return;
+			if(GameController.isStop) return;
 			transform.Translate( GameController.speedMoveMap * Time.deltaTime * Vector2.left);
 			if(transform.position.x < -30)
 			{
