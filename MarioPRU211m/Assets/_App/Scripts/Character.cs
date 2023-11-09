@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class Character : MonoBehaviour
 {
 	[SerializeField] private Rigidbody2D _theRb;
 
-	[SerializeField] private Animator _anim;
+	public Animator anim;
 
 	[SerializeField] private Transform _checkGround;
 
@@ -29,12 +30,12 @@ public class Character : MonoBehaviour
 	{
 		if(gameControl.isStop) return;
 		_isGround = Physics2D.OverlapCircle(_checkGround.transform.position, 0.1f, _maskGround);
-		if(Input.GetKeyDown(KeyCode.Space))
+		if(Input.GetKey(KeyCode.Space))
 		{
 			Jump();
 		}
-		_anim.SetBool("isGround", _isGround);
-		_anim.SetBool("isFall", _theRb.velocity.y < -0.1f);
+		anim.SetBool("isGround", _isGround);
+		anim.SetBool("isFall", _theRb.velocity.y < -0.1f);
 	}
 
 	private void OnDrawGizmosSelected()
@@ -48,7 +49,7 @@ public class Character : MonoBehaviour
 		{
 			gameControl.LoseGame();
 			_theRb.velocity = new Vector2(-15, Random.Range(5, 15));
-			_anim.SetTrigger("isDie");
+			anim.SetTrigger("isDie");
 		}
 	}
 }

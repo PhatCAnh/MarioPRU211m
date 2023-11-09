@@ -3,15 +3,15 @@ namespace _App.Scripts
 {
 	public class MapElement : MonoBehaviour
 	{
-		private GameController GameController => GameController.instance;
+		private GameController gameController => GameController.instance;
 		
 		void Update()
 		{
-			if(GameController.isStop) return;
-			transform.Translate( GameController.speedMoveMap * Time.deltaTime * Vector2.left);
+			if(gameController.isStop) return;
+			transform.Translate(gameController.speedMoveMap * Time.deltaTime * Vector2.left);
 			if(transform.position.x < -30)
 			{
-				GameController.DoneMapMove();
+				gameController.DoneMapMove();
 				Destroy(gameObject);
 			}
 		}
